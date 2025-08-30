@@ -7,7 +7,7 @@ CREATE TABLE Venue (
 CREATE TABLE Facilities (
     VenueID   INTEGER REFERENCES Venue(VenueID),
     Facility  VARCHAR(60),
-    PRIMARY   KEY(VenueID, Facility)
+    PRIMARY KEY(VenueID, Facility)
 );
 
 CREATE TABLE FestivalGoer (
@@ -35,8 +35,13 @@ CREATE TABLE FestivalStaff (
     FSMailAddress   VARCHAR(120),
     FSFirstName     VARCHAR(40) NOT NULL,
     FSLastName      VARCHAR(40) NOT NULL,
-    FSPhone         VARCHAR(30),
-    Assists         INTEGER REFERENCES FestivalStaff(FestivalStaffID)
+    FSPhone         VARCHAR(30)
+);
+
+CREATE TABLE Assist (
+    FestivalStaffID INTEGER REFERENCES FestivalStaff(FestivalStaffID),
+    Assistant       INTEGER REFERENCES FestivalStaff(FestivalStaffID),
+    PRIMARY KEY (FestivalStaffID, Assistant)
 );
 
 CREATE TABLE StaffDaysWorking (
